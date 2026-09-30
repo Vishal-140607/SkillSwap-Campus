@@ -1,55 +1,48 @@
-# SkillSwap (DjangoLab)
+# SkillSwap — Student Skill Exchange Platform
 
-A peer-to-peer skill exchange platform for students. Users list skills they
-can teach or want to learn, browse other students, send learning requests,
-accept/reject them, receive real-time notifications, and leave reviews after
-a completed exchange.
+A Django-based peer-to-peer skill exchange platform designed for students to connect, share skills, and learn from each other.
 
-## Features
+## 📌 Overview
 
-- User registration & authentication
-- Student profiles (department, year, bio)
-- Add/remove skills you can teach or want to learn
-- Explore page to search and find other students by skill
-- Learning requests (send / accept / reject)
-- Real-time notifications via Django Channels (WebSockets)
-- Reviews & ratings after an accepted exchange
+SkillSwap allows students to create profiles, list skills they can teach or want to learn, discover other students, send learning requests, and exchange knowledge.
 
-## Setup
+The platform also includes real-time notifications and a review system for completed exchanges.
 
-1. Create and activate a virtual environment:
-   ```
-   python -m venv venv
-   venv\Scripts\activate      # Windows
-   source venv/bin/activate   # macOS/Linux
-   ```
+## ✨ Features
 
-2. Install dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
+- 🔐 User registration, login, and logout
+- 👤 Student profiles with department, year, and bio
+- 🧑‍🏫 Add and manage skills to teach
+- 📚 Add skills you want to learn
+- 🔎 Explore and search students by skills
+- 📩 Send learning requests
+- ✅ Accept or reject learning requests
+- 🔔 Real-time notifications using WebSockets
+- ⭐ Reviews and ratings after completed exchanges
+- 🛠️ Django admin panel for managing skills
 
-3. Apply migrations:
-   ```
-   python manage.py migrate
-   ```
+## 🛠️ Tech Stack
 
-4. Create an admin account (used to add Skills via /admin):
-   ```
-   python manage.py createsuperuser
-   ```
+| Technology | Purpose |
+|---|---|
+| Python | Backend programming |
+| Django | Web framework |
+| Django Channels | Real-time WebSocket notifications |
+| HTML | Page structure |
+| CSS | Styling |
+| SQLite | Database |
+| Git & GitHub | Version control |
 
-5. Run the server:
-   ```
-   python manage.py runserver
-   ```
+## 📂 Project Structure
 
-6. Visit `http://127.0.0.1:8000/`, then log into `http://127.0.0.1:8000/admin/`
-   to add a few Skills (e.g. Python, Guitar, Photography) before testing the
-   Explore and Manage Skills pages.
-
-## Tech stack
-
-- Django 6.1.1
-- Django Channels (WebSocket notifications)
-- SQLite (default dev database)
+```text
+SkillSwap-Campus/
+│
+├── myapp/
+├── myproject/
+├── templates/
+├── static/
+├── manage.py
+├── requirements.txt
+├── .gitignore
+└── README.md
