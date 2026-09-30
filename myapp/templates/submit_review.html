@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Write a Review | SkillSwap</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #4f46e5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 650px;
+            margin: 60px auto;
+        }
+
+        .card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .card h1 {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .student {
+            background: #f5f3ff;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .student strong {
+            color: #4f46e5;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+            margin-bottom: 22px;
+        }
+
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            border: none;
+            background: #4f46e5;
+            color: white;
+            padding: 14px;
+            border-radius: 9px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background: #4338ca;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        @media (max-width: 650px) {
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .container {
+                margin: 35px auto;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<nav>
+
+    <div class="logo">
+        Skill<span>Swap</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'profile' %}">
+            Profile
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>
+            ⭐ Write a Review
+        </h1>
+
+        <p class="subtitle">
+            Share your experience with another SkillSwap student.
+        </p>
+
+
+        <div class="student">
+
+            Reviewing:
+
+            <strong>
+                {{ reviewed_student.name }}
+            </strong>
+
+        </div>
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label for="rating">
+                Rating
+            </label>
+
+            <select name="rating" id="rating" required>
+
+                <option value="">
+                    Select a rating
+                </option>
+
+                <option value="5">
+                    ⭐⭐⭐⭐⭐ — Excellent
+                </option>
+
+                <option value="4">
+                    ⭐⭐⭐⭐ — Very Good
+                </option>
+
+                <option value="3">
+                    ⭐⭐⭐ — Good
+                </option>
+
+                <option value="2">
+                    ⭐⭐ — Needs Improvement
+                </option>
+
+                <option value="1">
+                    ⭐ — Poor
+                </option>
+
+            </select>
+
+
+            <label for="comment">
+                Your Comment
+            </label>
+
+            <textarea
+                name="comment"
+                id="comment"
+                placeholder="Tell us about your learning experience..."
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Submit Review
+            </button>
+
+        </form>
+
+
+        <a
+            href="{% url 'profile' %}"
+            class="back"
+        >
+            ← Back to Profile
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

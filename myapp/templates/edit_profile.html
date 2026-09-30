@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Profile | SkillSwap</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #4f46e5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .container {
+            width: 86%;
+            max-width: 650px;
+            margin: 45px auto;
+        }
+
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .form-card h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+
+        .error-message {
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background: #fef2f2;
+            color: #b91c1c;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #d1d5db;
+            border-radius: 9px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #4f46e5;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        button,
+        .cancel {
+            flex: 1;
+            padding: 13px;
+            border-radius: 9px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        button {
+            border: none;
+            background: #4f46e5;
+            color: white;
+        }
+
+        button:hover {
+            background: #4338ca;
+        }
+
+        .cancel {
+            border: 1px solid #d1d5db;
+            color: #374151;
+            background: white;
+        }
+
+        .cancel:hover {
+            background: #f9fafb;
+        }
+
+        @media (max-width: 600px) {
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        Skill<span>Swap</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="{% url 'dashboard' %}">
+            Dashboard
+        </a>
+
+        <a href="{% url 'profile' %}">
+            Profile
+        </a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <div class="form-card">
+
+        <h1>
+            Edit Profile
+        </h1>
+
+        <p class="subtitle">
+            Keep your SkillSwap profile up to date.
+        </p>
+
+
+        {% if error_message %}
+
+            <div class="error-message">
+                {{ error_message }}
+            </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <label>
+                Name
+            </label>
+
+            <input
+                type="text"
+                name="name"
+                value="{{ student.name }}"
+                required
+            >
+
+
+            <label>
+                Department
+            </label>
+
+            <input
+                type="text"
+                name="department"
+                value="{{ student.department }}"
+                placeholder="e.g. Computer Science and Engineering"
+                required
+            >
+
+
+            <label>
+                Year
+            </label>
+
+            <select name="year" required>
+
+                <option
+                    value="1"
+                    {% if student.year == 1 %}selected{% endif %}
+                >
+                    1st Year
+                </option>
+
+                <option
+                    value="2"
+                    {% if student.year == 2 %}selected{% endif %}
+                >
+                    2nd Year
+                </option>
+
+                <option
+                    value="3"
+                    {% if student.year == 3 %}selected{% endif %}
+                >
+                    3rd Year
+                </option>
+
+                <option
+                    value="4"
+                    {% if student.year == 4 %}selected{% endif %}
+                >
+                    4th Year
+                </option>
+
+            </select>
+
+
+            <label>
+                Bio
+            </label>
+
+            <textarea
+                name="bio"
+                placeholder="Tell other students about yourself..."
+            >{{ student.bio }}</textarea>
+
+
+            <div class="buttons">
+
+                <a
+                    href="{% url 'profile' %}"
+                    class="cancel"
+                >
+                    Cancel
+                </a>
+
+                <button type="submit">
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

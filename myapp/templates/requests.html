@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Requests | SkillSwap Campus</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #111827;
+        }
+
+        .section {
+            margin-bottom: 45px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            color: #111827;
+        }
+
+        .request-card {
+            background: white;
+            padding: 22px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .request-info {
+            margin-bottom: 15px;
+        }
+
+        .request-info strong {
+            color: #111827;
+        }
+
+        .request-info p {
+            margin: 7px 0;
+            color: #6b7280;
+        }
+
+        .contact {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: #eef2ff;
+            border-radius: 8px;
+            color: #3730a3;
+            font-size: 14px;
+        }
+
+        .contact strong {
+            color: #111827;
+        }
+
+        .contact a {
+            color: #4f46e5;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .accept {
+            background: #16a34a;
+            color: white;
+        }
+
+        .accept:hover {
+            background: #15803d;
+        }
+
+        .reject {
+            background: #dc2626;
+            color: white;
+        }
+
+        .reject:hover {
+            background: #b91c1c;
+        }
+
+        .review {
+            display: inline-block;
+            background: #111827;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .review:hover {
+            background: #374151;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .accepted {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .empty {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            color: #6b7280;
+        }
+
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 700px) {
+
+            nav {
+                padding: 16px 5%;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .container {
+                margin-top: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <a href="/" class="logo">
+            SkillSwap Campus
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/explore/">Explore</a>
+
+            <a href="/dashboard/">Dashboard</a>
+
+            <a href="/profile/">Profile</a>
+
+        </div>
+
+    </nav>
+
+
+    <div class="container">
+
+        <h1>Learning Requests</h1>
+
+
+        <div class="section">
+
+            <h2>📥 Received Requests</h2>
+
+            {% if received_requests %}
+
+                {% for request in received_requests %}
+
+                    <div class="request-card">
+
+                        <div class="request-info">
+
+                            <p>
+                                <strong>{{ request.sender.name }}</strong>
+                                wants to learn
+                                <strong>{{ request.skill.name }}</strong>
+                                from you.
+                            </p>
+
+                            <p>
+                                Sent on {{ request.created_at|date:"M d, Y H:i" }}
+                            </p>
+
+                        </div>
+
+
+                        {% if request.status == 'pending' %}
+
+                            <div class="actions">
+
+                                <form
+                                    method="POST"
+                                    action="{% url 'accept_request' request.id %}"
+                                >
+
+                                    {% csrf_token %}
+
+                                    <button
+                                        type="submit"
+                                        class="btn accept"
+                                    >
+                                        ✓ Accept
+                                    </button>
+
+                                </form>
+
+
+                                <form
+                                    method="POST"
+                                    action="{% url 'reject_request' request.id %}"
+                                >
+
+                                    {% csrf_token %}
+
+                                    <button
+                                        type="submit"
+                                        class="btn reject"
+                                    >
+                                        ✕ Reject
+                                    </button>
+
+                                </form>
+
+                            </div>
+
+                        {% elif request.status == 'accepted' %}
+
+                            <span class="status accepted">
+                                Accepted
+                            </span>
+
+                            <div class="contact">
+
+                                📧 <strong>Contact Student:</strong>
+
+                                <a href="mailto:{{ request.sender.user.email }}">
+                                    {{ request.sender.user.email }}
+                                </a>
+
+                            </div>
+
+                        {% elif request.status == 'rejected' %}
+
+                            <span class="status rejected">
+                                Rejected
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    No received learning requests yet.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="section">
+
+            <h2>📤 Sent Requests</h2>
+
+            {% if sent_requests %}
+
+                {% for request in sent_requests %}
+
+                    <div class="request-card">
+
+                        <div class="request-info">
+
+                            <p>
+                                You requested to learn
+                                <strong>{{ request.skill.name }}</strong>
+                                from
+                                <strong>{{ request.receiver.name }}</strong>.
+                            </p>
+
+                            <p>
+                                Sent on {{ request.created_at|date:"M d, Y H:i" }}
+                            </p>
+
+                        </div>
+
+
+                        {% if request.status == 'pending' %}
+
+                            <span class="status pending">
+                                Pending
+                            </span>
+
+                        {% elif request.status == 'accepted' %}
+
+                            <div class="actions">
+
+                                <span class="status accepted">
+                                    Accepted
+                                </span>
+
+                                <a
+                                    href="{% url 'submit_review' request.receiver.id %}"
+                                    class="review"
+                                >
+                                    ⭐ Write Review
+                                </a>
+
+                            </div>
+
+                            <div class="contact">
+
+                                📧 <strong>Contact Student:</strong>
+
+                                <a href="mailto:{{ request.receiver.user.email }}">
+                                    {{ request.receiver.user.email }}
+                                </a>
+
+                            </div>
+
+                        {% elif request.status == 'rejected' %}
+
+                            <span class="status rejected">
+                                Rejected
+                            </span>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <div class="empty">
+                    You haven't sent any learning requests yet.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        © 2026 SkillSwap Campus · Peer-to-Peer Learning Platform
+
+    </footer>
+
+</body>
+
+</html>

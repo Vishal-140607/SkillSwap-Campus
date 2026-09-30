@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>How It Works | SkillSwap Campus</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+
+        nav {
+            background: #111827;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 70px 20px 50px;
+            background: white;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            color: #111827;
+        }
+
+        .hero p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #6b7280;
+        }
+
+        .steps {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .step {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .number {
+            width: 55px;
+            height: 55px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #111827;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .step h2 {
+            margin-bottom: 12px;
+            color: #111827;
+        }
+
+        .step p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .features {
+            background: white;
+            padding: 60px 20px;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 35px;
+        }
+
+        .feature-grid {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            padding: 25px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+        }
+
+        .feature h3 {
+            margin-top: 0;
+            color: #111827;
+        }
+
+        .feature p {
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        .cta {
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        .cta h2 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .cta p {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #111827;
+            color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #374151;
+        }
+
+        footer {
+            background: #111827;
+            color: #9ca3af;
+            text-align: center;
+            padding: 25px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 750px) {
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+
+        <a href="/" class="logo">
+            SkillSwap Campus
+        </a>
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/explore/">Explore</a>
+
+            <a href="/how-it-works/">How It Works</a>
+
+            <a href="/login/">Login</a>
+
+        </div>
+
+    </nav>
+
+
+    <section class="hero">
+
+        <h1>How SkillSwap Campus Works</h1>
+
+        <p>
+            SkillSwap Campus helps students learn from each other
+            by connecting people who want to teach their skills with
+            students who want to learn them.
+        </p>
+
+    </section>
+
+
+    <section class="steps">
+
+        <div class="step">
+
+            <div class="number">
+                1
+            </div>
+
+            <h2>Create Your Profile</h2>
+
+            <p>
+                Register on SkillSwap Campus and complete your
+                student profile with your department, year and bio.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">
+                2
+            </div>
+
+            <h2>Add Your Skills</h2>
+
+            <p>
+                Select the skills you can teach and the skills
+                you want to learn from other students.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="number">
+                3
+            </div>
+
+            <h2>Connect & Learn</h2>
+
+            <p>
+                Explore students, send learning requests and
+                start meaningful skill exchanges with your peers.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="features">
+
+        <h2>What You Can Do</h2>
+
+        <div class="feature-grid">
+
+            <div class="feature">
+
+                <h3>🔎 Explore Skills</h3>
+
+                <p>
+                    Search for skills available on campus and
+                    discover students who are willing to teach them.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>🤝 Send Learning Requests</h3>
+
+                <p>
+                    Send a request to a student who teaches a skill
+                    you want to learn.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>🔔 Real-Time Notifications</h3>
+
+                <p>
+                    Receive instant notifications when someone sends,
+                    accepts or rejects a learning request.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <h3>⭐ Reviews & Ratings</h3>
+
+                <p>
+                    After completing an accepted skill exchange,
+                    students can review their learning experience.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="cta">
+
+        <h2>Ready to Start Learning?</h2>
+
+        <p>
+            Discover new skills and connect with students
+            who can help you grow.
+        </p>
+
+        <a href="/explore/" class="btn">
+            Explore Skills
+        </a>
+
+    </section>
+
+
+    <footer>
+
+        © 2026 SkillSwap Campus · Peer-to-Peer Learning Platform
+
+    </footer>
+
+</body>
+
+</html>
